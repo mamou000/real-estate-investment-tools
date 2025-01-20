@@ -1,114 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 @layer base {
   :root {
-    --background: 0 0% 0%; /* Noir pur */
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 3%;
-    --popover-foreground: 0 0% 98%;
-
-    /* Orange comme couleur primaire */
-    --primary: 24 100% 50%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 24 100% 50%; /* Orange */
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 24 100% 50%; /* Orange */
-
-    /* Couleurs pour les graphiques */
-    --chart-1: 24 100% 50%;  /* Orange */
-    --chart-2: 24 80% 40%;   /* Orange foncé */
-    --chart-3: 24 60% 30%;   /* Orange plus foncé */
-    --chart-4: 24 40% 20%;   /* Orange très foncé */
-    --chart-5: 24 20% 10%;   /* Orange presque noir */
-
+    --background: 20 14% 4%;
+    --foreground: 60 9.1% 97.8%;
+    
+    --card: 20 14% 4%;
+    --card-foreground: 60 9.1% 97.8%;
+ 
+    --popover: 20 14% 4%;
+    --popover-foreground: 60 9.1% 97.8%;
+ 
+    --primary: 24 96% 53%; /* Orange vif */
+    --primary-foreground: 60 9.1% 97.8%;
+ 
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+ 
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+ 
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+ 
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+ 
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 24 96% 53%;
+ 
     --radius: 0.75rem;
   }
 }
 
-/* Classes personnalisées pour les dégradés */
-.bg-gradient-tech {
-  background: linear-gradient(130deg, rgb(0, 0, 0) 0%, rgb(20, 20, 20) 100%);
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(20 14% 4%), hsl(12 6.5% 15.1%));
 }
 
-.bg-gradient-accent {
-  background: linear-gradient(130deg, hsl(24, 100%, 50%) 0%, hsl(24, 100%, 40%) 100%);
-}
-
-.bg-gradient-card {
-  background: linear-gradient(145deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
-  backdrop-filter: blur(10px);
-}
-
-.bg-glass {
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(10px);
+.glass-card {
+  background: rgba(28, 25, 23, 0.8);
+  backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.text-gradient {
-  background: linear-gradient(to right, hsl(24, 100%, 50%), hsl(24, 100%, 70%));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
 }
 
-/* Animations subtiles */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.button-gradient {
+  background: linear-gradient(135deg, hsl(24 96% 53%), hsl(15 96% 53%));
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+.button-gradient:hover {
+  background: linear-gradient(135deg, hsl(24 96% 58%), hsl(15 96% 58%));
 }
 
-/* Styles généraux */
+.hero-gradient {
+  background: radial-gradient(circle at top left, rgba(251, 146, 60, 0.15), transparent 50%),
+             radial-gradient(circle at bottom right, rgba(251, 146, 60, 0.1), transparent 50%),
+             linear-gradient(135deg, hsl(20 14% 4%), hsl(12 6.5% 15.1%));
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-gradient-tech text-foreground;
-  }
-  
-  input[type="number"] {
-    @apply bg-glass border-none h-12 rounded-lg transition-all duration-200 hover:ring-2 hover:ring-primary/50 focus:ring-2 focus:ring-primary;
-  }
-  
-  button {
-    @apply transition-all duration-200;
+    @apply bg-background text-foreground;
   }
 }
 
-/* Styles des composants */
-.tab-active {
-  @apply bg-gradient-accent text-white shadow-lg;
+/* Animations */ 
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(251, 146, 60, 0.5);
+  }
 }
 
-.glassmorphism {
-  @apply bg-glass rounded-xl border border-white/10 shadow-xl;
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Card hover effects */
+.card-hover-effect {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
